@@ -12,6 +12,7 @@ app.use(express.static('./public'))
 app.use('/api/v1/tasks', tasks);
 app.use(notFound);
 app.use(errorHandlerMiddleware);
+// const port = 3000 but it won't work after deployment. That's why set below one
 const port = process.env.PORT || 3000;
 const start = async ()=>{
     try{
