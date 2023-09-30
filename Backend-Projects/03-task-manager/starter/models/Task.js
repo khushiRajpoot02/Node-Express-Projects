@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
-
 // create new schema
-
 const TaskSchema = new mongoose.Schema({
     name: {
        type : String,
@@ -14,5 +12,4 @@ const TaskSchema = new mongoose.Schema({
        default : false,
     } 
 })
-
 module.exports = mongoose.model('Task', TaskSchema);

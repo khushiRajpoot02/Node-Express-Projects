@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const connectDB = (url)=>{
     console.log(url, "ye url print kr rhe");
   return mongoose.connect(url,

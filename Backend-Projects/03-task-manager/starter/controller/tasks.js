@@ -1,4 +1,3 @@
-const { WriteError } = require('mongodb');
 const Task = require('../models/Task');
 const getAllTasks = async (req, res)=>{
     try{
@@ -14,7 +13,7 @@ const getAllTasks = async (req, res)=>{
 const getSingleTask = async (req, res)=>{
     try{
         const {id : taskId} = req.params;
-      const task =await Task.findOne({_id : taskId});
+      const task = await Task.findOne({_id : taskId});
       if(!task){
        return res.send(400).json({msg : `task not found with id ${taskId}`})
       }
@@ -26,6 +25,7 @@ const getSingleTask = async (req, res)=>{
 }
 const addTask =async (req, res)=>{
 try{
+    // const data = req.body;
     const task = await Task.create(req.body);
     res.status(201).json({task});
 }catch(err){
