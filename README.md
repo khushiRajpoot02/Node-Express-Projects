@@ -16,3 +16,7 @@ Catching the erros in express(custom error handler) = >
 
 Custome error requests which extendes from general js class= > for handling all our 404 custome errors
 a cunstrocter method is a special method we invocked when we create new instance of the class
+
+04-store-api=>
+ All steps involved
+   
