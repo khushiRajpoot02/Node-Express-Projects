@@ -32,14 +32,12 @@ if(numericFilters){
       '=' : 'eq',
       '<':'$lt',
       '<=':'$lt'
-    
   }
   const rgex = /\b(<|>|<=|>=|=)\b/g ;
   let filters = numericFilters.replace(rgex,
      (match)=>`-${operatorMap[match]}-`
       )
       console.log(filters);
-
       const options = ['price', 'rating'];
       filters = filters.split(',').forEach((item)=>{
         const [fields, operator, value] = item.split('-');
