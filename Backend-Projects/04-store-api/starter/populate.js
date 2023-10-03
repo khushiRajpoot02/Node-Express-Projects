@@ -12,7 +12,7 @@ const start = async ()=>{
       // dumb data into db 
       await Product.create(jsonProducts);
       console.log('Success!!!!');
-      // if we do not want to file to runnig
+      // if we do not want to file to continue runnig
       process.exit(0);
 
     }
