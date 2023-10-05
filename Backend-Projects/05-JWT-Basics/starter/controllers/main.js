@@ -9,7 +9,7 @@
    // 3 our own validator which we have set in task manager app
    const jwt = require('jsonwebtoken');
    require('dotenv').config();
-const {Badrequest} = require('../errors');
+   const {Badrequest} = require('../errors');
 
 const authMiddleware = require('../middleware/auth');
 const login = async (req, res)=>{

@@ -23,4 +23,10 @@ a cunstrocter method is a special method we invocked when we create new instance
 
  05-JWT basics
   we use jwt for making our route private. Using JWt we restrict users to access our route
+
+  06-jobs-api
+     in register controller =>
+     topics learnt : hashing the password, mongoose middleware, instance schema
+
+  
    

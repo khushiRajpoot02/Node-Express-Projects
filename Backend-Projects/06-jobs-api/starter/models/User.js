@@ -1,5 +1,7 @@
+require('dotenv').config()
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const userSchema = new mongoose.Schema({
    name:{
       type : String,
@@ -19,12 +21,21 @@ const userSchema = new mongoose.Schema({
     // maxlength : 12
    }
 })
+userSchema.pre('save', async function(next){
+   const salt = await bcrypt.genSalt(10);
+   this.password = await bcrypt.hash(this.password, salt);
+   next();
+} )
 
-// userSchema.pre('save', async function(next){
-//    const salt = await bcrypt.genSalt(10);
-//    this.password = await bcrypt.hash(this.password, salt);
-//    next();
-// } )
 
-
+userSchema.methods.createJWT = function(){
+   return jwt.sign({userId: this._id, name : this.name},process.env.JWT_TOKEN , {
+        expiresIn:  process.env.JWT_LIFETIME
+          //JWT_TOKEN=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKBKpmMm6i6rjBFcCwzW5ybtjGBzWVIiRYUW0JgsNu8LMcvmnqrKNxzok1PPMSMaNdAVDdHvS4COvm9gFgkpO28CAwEAAQ==
+   })
+}
+userSchema.methods.comparePassword = async function(isCandidate){
+   const isMatch = await bcrypt.compare(isCandidate, this.password);
+   return isMatch;
+}
 module.exports = mongoose.model('User', userSchema);
