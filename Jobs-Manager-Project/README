@@ -1,0 +1,10 @@
+# All learning
+ -CRUD application
+   a.app.get
+   b.app.getAll
+   c.app.create
+  d.app.update
+    e.app.delete
+
+
+
