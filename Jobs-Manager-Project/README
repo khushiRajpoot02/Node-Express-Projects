@@ -4,7 +4,10 @@
    b.app.getAll
    c.app.create
   d.app.update
-    e.app.delete
+  e.app.delete
+-AsyncWrapper and Error handling
+  Basically we create asyncWrapper middleWare to refactor our code, so that we do not have to write try and catch again and again
+
 
 
 
