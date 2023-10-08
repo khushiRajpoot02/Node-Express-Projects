@@ -5,12 +5,10 @@ const port = 3000;
 const mainRouter = require('./Routes/tasks');
 const connectDB = require('./db/connect')
 app.use(express.json());
+   // task manager route
 app.use('/api/v1', mainRouter);
-app.get('/api/v1/get', (req, res)=>{
-    res.send('Hey there!');
-})
-
-const start =async ()=>{
+   // product route
+const start = async ()=>{
 try{
       // connect db
     await connectDB(process.env.MONGO_URI);
@@ -21,5 +19,6 @@ try{
     }
 }
 start();
+
 
 

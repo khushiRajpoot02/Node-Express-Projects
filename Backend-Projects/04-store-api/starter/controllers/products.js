@@ -47,7 +47,6 @@ if(numericFilters){
       })
   // console.log(numericFilters);
 }
-
 let result = modelProduct.find(queryObj);
 if(sort){
   const sortList = sort.split(',').join(' ');

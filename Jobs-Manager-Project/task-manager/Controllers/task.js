@@ -49,22 +49,20 @@
  // 1 route not found
  // empty task
  // 
- /*
-      creating CRUD application again here
+ /* creating CRUD application again here
 const getSingleTask = async(req, res)=>{
-   const {Id : taskId} = req.params;
   try{
+    const {Id : taskId} = req.params;
     const task = await TaskModel.findOne({_id : taskId});
     res.status(201).json({task});
   }catch(err){
     res.status(500).send(`task not found with id ${taskId}`);
   }
 }
-
 const getAllTasks = async (req, res)=>{
   try{
     const tasks = await Tasks.find({});
-    res.status(500).json({tasks});
+    res.status(200).json({tasks});
   }catch(err){
     res.status(505).send('tasks not found');
   }
@@ -78,8 +76,9 @@ const createTask = async(req, res)=>{
   }
 }
 const updateTask = async(req, res)=>{
-  const {Id : taskId} = req.params
+ 
   try{
+     const {Id : taskId} = req.params
     const task = await TaskModel.findOneAndUpdate({_id : taskId}, req.body, {
       new : true,
       runValidators:true
@@ -90,14 +89,20 @@ const updateTask = async(req, res)=>{
   }
 }
 const deleteTask = async(req, res)=>{
-   const {Id : taskId} = req.params
+  
   try{
+    const {Id : taskId} = req.params
     const task = await TaskModel.findOneAndDelete({_id : taskId});
+    if(!task){
+     return res.status(500).send(`task not found with id ${taskId}`);
+    }
     res.status(201).json({task});
   }catch(err){
-    res.status(500).send(`task not found with id ${taskId}`);
+    res.status(500).send({err});
   }
+
 }
+now for removing try and catch  block I am gonna write async wrapper
 
 code bhi basic sa tha but mere se nahi huaa, laanat hai mere pe yrrr 
   */
