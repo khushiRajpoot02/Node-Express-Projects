@@ -24,7 +24,6 @@ if(company){
 if(name){
   queryObj.name = {$regex : name, $options : 'i'}
 }
-
 if(numericFilters){
   const operatorMap = {
       '>':'$gt',
@@ -78,3 +77,16 @@ const product = await result;
  res.status(201).json({product, nbHits : product.length});
 }
 module.exports = {getAllProductsStatic, getAllProducts};
+
+
+
+
+
+
+
+
+
+
+
+
+
