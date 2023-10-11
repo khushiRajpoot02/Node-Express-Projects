@@ -1,32 +1,91 @@
-const {CustomeAPIError} = require('../errors/custome-error');
-const{StatusCodes} = require('http-status-codes');
-const errorHandlerMiddleware = (err,req, res, next)=>{
+// // const { CustomAPIError } = require('../errors')
+// // const { StatusCodes } = require('http-status-codes')
+// // const errorHandlerMiddleware = (err, req, res, next) => {
+// // let customError = {
+// //   // set default
+// //   statusCode: err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR,
+// //   msg: err.message || 'Something went wrong try again later',
+// // }
+
+// // if (err instanceof CustomAPIError) {
+// //   return res.status(err.statusCode).json({ msg: err.message })
+// // }
+// // if (err.name === 'ValidationError') {
+// //   customError.msg = Object.values(err.errors)
+// //     .map((item) => item.message)
+// //     .join(',')
+// //   customError.statusCode = 400
+// // }
+// // if (err.code && err.code === 11000) {
+// //   customError.msg = `Duplicate value entered for ${Object.keys(
+// //     err.keyValue
+// //   )} field, please choose another value`
+// //   customError.statusCode = 400
+// // }
+// // if (err.name === 'CastError') {
+// //   customError.msg = `No item found with id : ${err.value}`
+// //   customError.statusCode = 404
+// // }
+
+// // return res.status(customError.statusCode).json({ msg: customError.msg })
+// // }
+
+// // module.exports = errorHandlerMiddleware
+
+// const { CustomAPIError } = require('../errors')
+// const { StatusCodes } = require('http-status-codes')
+// const errorHandlerMiddleware = (err, req, res, next) => {
+//   if (err instanceof CustomAPIError) {
+//     return res.status(err.statusCode).json({ msg: err.message })
+//   }
+//   return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err })
+// }
+// module.exports = errorHandlerMiddleware
+
+const { CustomAPIError } = require('../errors')
+const { StatusCodes } = require('http-status-codes')
+const errorHandlerMiddleware = (err, req, res, next) => {
+// const customeError = {
+//    statusCode : err.StatusCodes || StatusCodes.INTERNAL_SERVER_ERROR,
+//    msg : err.message || 'Somthing went wrong try again letter'
+// }
+// //console.log({err});
+// // we have implemented customError that's why here I have commented customeAPIError
+//   // if (err instanceof CustomAPIError) {
+//   //   return res.status(err.statusCode).json({ msg: err.message })
+//   // }
+//  if(err.code && err.code === 11000){
+//   customeError.msg = `Duplicate value enter for ${Object.keys(err.keyValue)} field, please chose another value`
+//   customeError.statusCode = 400;
+//  }
+
+//   //  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({err} )
+//     return res.status(customeError.statusCode).json({ msg : customeError.msg });
 let customError = {
-   statusCode : err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR,
-   msg : err.message || 'Something went wrong try again later',
+  // set default
+  statusCode: err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR,
+  msg: err.message || 'Something went wrong try again later',
 }
 
-if(err instanceof CustomeAPIError){
- return  req.status(err.status).json({msg : err.message});
+if (err instanceof CustomAPIError) {
+  return res.status(err.statusCode).json({ msg: err.message })
 }
-   // res.status(500).json({msg : 'something went wrong'});
-   if (err.name === 'ValidationError') {
-      customError.msg = Object.values(err.errors)
-        .map((item) => item.message)
-        .join(',')
-      customError.statusCode = 400
-    }
-    if (err.code && err.code === 11000) {
-      customError.msg = `Duplicate value entered for ${Object.keys(
-        err.keyValue
-      )} field, please choose another value`
-      customError.statusCode = 400
-    }
-    if (err.name === 'CastError') {
-      customError.msg = `No item found with id : ${err.value}`
-      customError.statusCode = 404
-    }
-    
-    return res.status(customError.statusCode).json({ msg: customError.msg })
-    }
-module.exports = errorHandlerMiddleware;
+if (err.name === 'ValidationError') {
+  customError.msg = Object.values(err.errors)
+    .map((item) => item.message)
+    .join(',')
+  customError.statusCode = 400
+}
+if (err.code && err.code === 11000) {
+  customError.msg = `Duplicate value entered for ${Object.keys(
+    err.keyValue
+  )} field, please choose another value`
+  customError.statusCode = 400
+}
+if (err.name === 'CastError') {
+  customError.msg = `No item found with id : ${err.value}`
+  customError.statusCode = 404
+}
+return res.status(customError.statusCode).json({ msg: customError.msg })
+}
+module.exports = errorHandlerMiddleware
