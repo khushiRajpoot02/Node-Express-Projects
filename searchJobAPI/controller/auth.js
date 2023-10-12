@@ -61,7 +61,7 @@
 // }
 // module.exports = {register, login};
 
-const User = require('../models/User')
+const User = require('../models/users')
 const { StatusCodes } = require('http-status-codes')
 const { BadRequestError, UnauthenticatedError } = require('../errors')
 

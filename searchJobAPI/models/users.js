@@ -64,7 +64,7 @@
 // // after that will send email and password for login
 require('dotenv').config()
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const userSchema = new mongoose.Schema({
    name:{
@@ -92,7 +92,7 @@ userSchema.pre('save', async function(next){
 } )
 
 userSchema.methods.createJWT = function(){
-   return jwt.sign({userId: this._id, name : this.name},process.env.JWT_TOKEN , {
+   return jwt.sign({userId: this._id, name : this.name},process.env.JWT_SECRET , {
         expiresIn:  process.env.JWT_LIFETIME
           //JWT_TOKEN=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKBKpmMm6i6rjBFcCwzW5ybtjGBzWVIiRYUW0JgsNu8LMcvmnqrKNxzok1PPMSMaNdAVDdHvS4COvm9gFgkpO28CAwEAAQ==
    })

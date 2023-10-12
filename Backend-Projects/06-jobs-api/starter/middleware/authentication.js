@@ -38,7 +38,8 @@
 // module.exports = authMiddleWare;
 
 
-const User = require('../models/User')
+//const User = require('../models/User')
+require('dotenv').config();
 const jwt = require('jsonwebtoken')
 const { UnauthenticatedError } = require('../errors')
 

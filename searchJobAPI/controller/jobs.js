@@ -1,4 +1,4 @@
-const Job = require('../models/Job');
+const Job = require('../models/jobs');
 const {BadRequestError, NotFoundError} = require('../errors');
 const {StatusCodes} =  require('http-status-codes');
 // const getAllJobs = async (req, res)=>{
@@ -48,7 +48,7 @@ const updateJob = async (req, res)=>{
     if(!company || !position){
       throw new NotFoundError('not found');
     }
-    const job = await Job.findByIdAndUpdate({_id : jobId, createdBy : userId},
+    const job = await Job.findOneAndUpdate({_id : jobId, createdBy : userId},
        req.body, 
        {new: true, runValidators: true});
        if(!job){
